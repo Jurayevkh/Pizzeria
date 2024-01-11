@@ -16,4 +16,12 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AccountCatalog.Application\AccountCatalog.Application.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\AccountCatalog.Infrastructure\AccountCatalog.Infrastructure.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
