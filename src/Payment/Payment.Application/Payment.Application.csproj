@@ -10,6 +10,32 @@
     <ProjectReference Include="..\Payment.Domain\Payment.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Abstractions\" />
+    <None Remove="UseCases\" />
+    <None Remove="UseCases\Payments\" />
+    <None Remove="UseCases\CreditCards\" />
+    <None Remove="UseCases\CreditCards\Commands\" />
+    <None Remove="UseCases\CreditCards\Handlers\" />
+    <None Remove="UseCases\CreditCards\Queries\" />
+    <None Remove="UseCases\Payments\Commands\" />
+    <None Remove="UseCases\Payments\Handlers\" />
+    <None Remove="UseCases\Payments\Queries\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Abstractions\" />
+    <Folder Include="UseCases\" />
+    <Folder Include="UseCases\Payments\" />
+    <Folder Include="UseCases\CreditCards\" />
+    <Folder Include="UseCases\CreditCards\Commands\" />
+    <Folder Include="UseCases\CreditCards\Handlers\" />
+    <Folder Include="UseCases\CreditCards\Queries\" />
+    <Folder Include="UseCases\Payments\Commands\" />
+    <Folder Include="UseCases\Payments\Handlers\" />
+    <Folder Include="UseCases\Payments\Queries\" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
+    <PackageReference Include="MediatR" Version="11.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
   </ItemGroup>
 </Project>
