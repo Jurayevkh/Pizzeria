@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Entities\" />
+    <None Remove="Entities\Payment\" />
+    <None Remove="Entities\CreditCard\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\" />
+    <Folder Include="Entities\Payment\" />
+    <Folder Include="Entities\CreditCard\" />
+  </ItemGroup>
 </Project>
