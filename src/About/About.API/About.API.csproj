@@ -16,9 +16,15 @@
 
   <ItemGroup>
     <None Remove="Controllers\" />
+    <None Remove="DTO\" />
+    <None Remove="DTO\Branches\" />
+    <None Remove="DTO\Promocodes\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="DTO\" />
+    <Folder Include="DTO\Branches\" />
+    <Folder Include="DTO\Promocodes\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\About.Application\About.Application.csproj">
