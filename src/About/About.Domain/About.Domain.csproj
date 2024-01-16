@@ -9,15 +9,11 @@
   <ItemGroup>
     <None Remove="Entities\" />
     <None Remove="Entities\Branches\" />
-    <None Remove="Entities\AboutCompany\" />
-    <None Remove="Entities\Actions\" />
     <None Remove="Entities\Promocodes\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Entities\Branches\" />
-    <Folder Include="Entities\AboutCompany\" />
-    <Folder Include="Entities\Actions\" />
     <Folder Include="Entities\Promocodes\" />
   </ItemGroup>
 </Project>
