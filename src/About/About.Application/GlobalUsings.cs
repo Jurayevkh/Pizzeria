@@ -1,0 +1,11 @@
+﻿global using MediatR;
+global using About.Domain.Entities.Branches;
+global using About.Application.Abstractions;
+global using Microsoft.EntityFrameworkCore;
+global using About.Application.UseCases.Branches.Commands;
+global using About.Application.UseCases.Branches.Queries;
+global using About.Domain.Entities.Promocodes;
+global using About.Application.UseCases.Promocodes.Commands;
+global using About.Application.UseCases.Promocodes.Queries;
+global using Microsoft.Extensions.DependencyInjection;
+global using System.Reflection;
