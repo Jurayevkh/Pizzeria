@@ -11,11 +11,31 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
+    <PackageReference Include="MediatR" Version="11.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Abstractions\" />
+    <None Remove="UseCases\" />
+    <None Remove="UseCases\Promocodes\" />
+    <None Remove="UseCases\Branches\" />
+    <None Remove="UseCases\Branches\Commands\" />
+    <None Remove="UseCases\Branches\Handlers\" />
+    <None Remove="UseCases\Branches\Queries\" />
+    <None Remove="UseCases\Promocodes\Commands\" />
+    <None Remove="UseCases\Promocodes\Handlers\" />
+    <None Remove="UseCases\Promocodes\Queries\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstractions\" />
+    <Folder Include="UseCases\" />
+    <Folder Include="UseCases\Promocodes\" />
+    <Folder Include="UseCases\Branches\" />
+    <Folder Include="UseCases\Branches\Commands\" />
+    <Folder Include="UseCases\Branches\Handlers\" />
+    <Folder Include="UseCases\Branches\Queries\" />
+    <Folder Include="UseCases\Promocodes\Commands\" />
+    <Folder Include="UseCases\Promocodes\Handlers\" />
+    <Folder Include="UseCases\Promocodes\Queries\" />
   </ItemGroup>
 </Project>
