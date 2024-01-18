@@ -3,6 +3,7 @@ using System;
 using AccountCatalog.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AccountCatalog.Infrastructure.Migrations
 {
     [DbContext(typeof(AccountCatalogDbContext))]
-    partial class AccountCatalogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240117120828_changed")]
+    partial class changed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,28 +40,6 @@ namespace AccountCatalog.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Kombolar"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Pitsalar"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Ichimliklar"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Desertlar"
-                        });
                 });
 
             modelBuilder.Entity("AccountCatalog.Domain.Entities.Customer.Customers", b =>

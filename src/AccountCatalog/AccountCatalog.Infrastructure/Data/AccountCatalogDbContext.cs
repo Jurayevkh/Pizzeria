@@ -3,6 +3,7 @@ using AccountCatalog.Application.Abstractions;
 using AccountCatalog.Domain.Entities.Category;
 using AccountCatalog.Domain.Entities.Customer;
 using AccountCatalog.Domain.Entities.Product;
+using AccountCatalog.Infrastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace AccountCatalog.Infrastructure.Data;
@@ -20,7 +21,7 @@ public class AccountCatalogDbContext : DbContext, IApplicationDbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetCallingAssembly());
+        modelBuilder.ApplyConfiguration(new CategoryTypeConfiguration());
     }
 }
 
