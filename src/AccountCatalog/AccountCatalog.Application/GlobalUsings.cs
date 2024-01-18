@@ -1,0 +1,9 @@
+﻿global using MediatR;
+global using AccountCatalog.Application.UseCases.Categories.Queries;
+global using AccountCatalog.Application.Abstractions;
+global using Microsoft.EntityFrameworkCore;
+global using AccountCatalog.Application.UseCases.Categories.Commands;
+global using AccountCatalog.Application.UseCases.Customers.Commands;
+global using AccountCatalog.Application.UseCases.Customers.Queries;
+global using AccountCatalog.Application.UseCases.Products.Commands;
+global using AccountCatalog.Application.UseCases.Products.Queries;

@@ -11,11 +11,39 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
+    <PackageReference Include="MediatR" Version="11.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Abstractions\" />
+    <None Remove="UseCases\" />
+    <None Remove="UseCases\Customers\" />
+    <None Remove="UseCases\Categories\" />
+    <None Remove="UseCases\Products\" />
+    <None Remove="UseCases\Categories\Commands\" />
+    <None Remove="UseCases\Categories\Handlers\" />
+    <None Remove="UseCases\Categories\Queries\" />
+    <None Remove="UseCases\Customers\Commands\" />
+    <None Remove="UseCases\Customers\Handlers\" />
+    <None Remove="UseCases\Customers\Queries\" />
+    <None Remove="UseCases\Products\Commands\" />
+    <None Remove="UseCases\Products\Handlers\" />
+    <None Remove="UseCases\Products\Queries\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstractions\" />
+    <Folder Include="UseCases\" />
+    <Folder Include="UseCases\Customers\" />
+    <Folder Include="UseCases\Categories\" />
+    <Folder Include="UseCases\Products\" />
+    <Folder Include="UseCases\Categories\Commands\" />
+    <Folder Include="UseCases\Categories\Handlers\" />
+    <Folder Include="UseCases\Categories\Queries\" />
+    <Folder Include="UseCases\Customers\Commands\" />
+    <Folder Include="UseCases\Customers\Handlers\" />
+    <Folder Include="UseCases\Customers\Queries\" />
+    <Folder Include="UseCases\Products\Commands\" />
+    <Folder Include="UseCases\Products\Handlers\" />
+    <Folder Include="UseCases\Products\Queries\" />
   </ItemGroup>
 </Project>
