@@ -16,9 +16,15 @@
 
   <ItemGroup>
     <None Remove="Controllers\" />
+    <None Remove="DTO\" />
+    <None Remove="DTO\Customers\" />
+    <None Remove="DTO\Products\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="DTO\" />
+    <Folder Include="DTO\Customers\" />
+    <Folder Include="DTO\Products\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AccountCatalog.Application\AccountCatalog.Application.csproj">
