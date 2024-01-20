@@ -11,11 +11,13 @@
     <None Remove="Entities\Category\" />
     <None Remove="Entities\Product\" />
     <None Remove="Entities\Customer\" />
+    <None Remove="Entities\Role\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Entities\Category\" />
     <Folder Include="Entities\Product\" />
     <Folder Include="Entities\Customer\" />
+    <Folder Include="Entities\Role\" />
   </ItemGroup>
 </Project>
