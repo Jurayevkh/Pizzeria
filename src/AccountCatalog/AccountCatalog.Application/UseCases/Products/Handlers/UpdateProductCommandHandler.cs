@@ -20,7 +20,7 @@ public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand,
             product.Price = request.Price ?? product.Price;
             product.Recipe = request.Recipe ?? product.Recipe;
             product.ImagePath = request.ImagePath ?? product.ImagePath;
-            product.UpdatedAt = DateTime.Now;
+            product.UpdatedAt = DateTime.UtcNow;
             _applicationdDbContext.Products.Update(product);
             var result = await _applicationdDbContext.SaveChangesAsync(cancellationToken);
             return result > 0;

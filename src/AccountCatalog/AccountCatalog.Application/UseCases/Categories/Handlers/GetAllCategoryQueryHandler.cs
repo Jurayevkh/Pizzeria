@@ -1,7 +1,7 @@
 ﻿namespace AccountCatalog.Application.UseCases.Categories.Handlers;
 using AccountCatalog.Domain.Entities.Category;
 
-public class GetAllCategoryQueryHandler : IRequestHandler<GetAllCustomers, List<Categories>>
+public class GetAllCategoryQueryHandler : IRequestHandler<GetAllCategoryQuery, List<Categories>>
 {
     private readonly IApplicationDbContext _applicationDbContext;
 
@@ -10,7 +10,7 @@ public class GetAllCategoryQueryHandler : IRequestHandler<GetAllCustomers, List<
         _applicationDbContext = applicationDbContext;
     }
 
-    public async Task<List<Categories>> Handle(GetAllCustomers request, CancellationToken cancellationToken)
+    public async Task<List<Categories>> Handle(GetAllCategoryQuery request, CancellationToken cancellationToken)
     {
         var categories = await _applicationDbContext.Categories.ToListAsync();
         return categories;

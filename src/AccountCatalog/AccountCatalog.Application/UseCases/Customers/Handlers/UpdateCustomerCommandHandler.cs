@@ -20,6 +20,7 @@ public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerComman
             customer.LastName = request.LastName ?? customer.LastName;
             customer.PhoneNumber = request.PhoneNumberChange ?? customer.PhoneNumber;
             customer.Password = request.Password ?? customer.Password;
+            customer.RoleId = request.RoleId ?? customer.RoleId;
             _applicationDbContext.Customers.Update(customer);
             var result = await _applicationDbContext.SaveChangesAsync(cancellationToken);
             return result > 0;

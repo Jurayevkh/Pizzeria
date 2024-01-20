@@ -25,7 +25,7 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand,
                 Recipe = request.Recipe,
                 ImagePath = request.ImagePath,
                 CategoryId = category.Id,
-                CreatedAt = DateTime.Now
+                CreatedAt = DateTime.UtcNow
             };
             await _applicationDbContext.Products.AddAsync(product);
             var result = await _applicationDbContext.SaveChangesAsync(cancellationToken);
