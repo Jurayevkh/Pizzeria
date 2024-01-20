@@ -14,7 +14,7 @@ namespace AccountCatalog.API.Controllers
         [HttpGet]
         public async ValueTask<IActionResult> GetAllCategory()
         {
-            var categories = await _mediator.Send(new GetAllCustomers());
+            var categories = await _mediator.Send(new GetAllCategoryQuery());
             return Ok(categories);
         }
 
