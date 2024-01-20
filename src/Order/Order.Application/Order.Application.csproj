@@ -11,11 +11,48 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
+    <PackageReference Include="MediatR" Version="11.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Refit" Version="6.3.2" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Abstractions\" />
+    <None Remove="UseCases\" />
+    <None Remove="UseCases\Baskets\" />
+    <None Remove="UseCases\BasketItems\" />
+    <None Remove="UseCases\Orders\" />
+    <None Remove="UseCases\OrderItems\" />
+    <None Remove="UseCases\BasketItems\Handlers\" />
+    <None Remove="UseCases\BasketItems\Queries\" />
+    <None Remove="UseCases\BasketItems\Commands\" />
+    <None Remove="UseCases\Baskets\Commands\" />
+    <None Remove="UseCases\Baskets\Handlers\" />
+    <None Remove="UseCases\Baskets\Queries\" />
+    <None Remove="UseCases\OrderItems\Commands\" />
+    <None Remove="UseCases\OrderItems\Handlers\" />
+    <None Remove="UseCases\OrderItems\Queries\" />
+    <None Remove="UseCases\Orders\Commands\" />
+    <None Remove="UseCases\Orders\Handlers\" />
+    <None Remove="UseCases\Orders\Queries\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstractions\" />
+    <Folder Include="UseCases\" />
+    <Folder Include="UseCases\Baskets\" />
+    <Folder Include="UseCases\BasketItems\" />
+    <Folder Include="UseCases\Orders\" />
+    <Folder Include="UseCases\OrderItems\" />
+    <Folder Include="UseCases\BasketItems\Handlers\" />
+    <Folder Include="UseCases\BasketItems\Queries\" />
+    <Folder Include="UseCases\BasketItems\Commands\" />
+    <Folder Include="UseCases\Baskets\Commands\" />
+    <Folder Include="UseCases\Baskets\Handlers\" />
+    <Folder Include="UseCases\Baskets\Queries\" />
+    <Folder Include="UseCases\OrderItems\Commands\" />
+    <Folder Include="UseCases\OrderItems\Handlers\" />
+    <Folder Include="UseCases\OrderItems\Queries\" />
+    <Folder Include="UseCases\Orders\Commands\" />
+    <Folder Include="UseCases\Orders\Handlers\" />
+    <Folder Include="UseCases\Orders\Queries\" />
   </ItemGroup>
 </Project>
