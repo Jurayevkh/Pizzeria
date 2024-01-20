@@ -1,9 +1,7 @@
-﻿using AccountCatalog.Infrastructure;
-
-var builder = WebApplication.CreateBuilder(args);
-
+﻿var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
