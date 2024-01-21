@@ -16,7 +16,8 @@ public class CreateCreditCardCommandHandler : IRequestHandler<CreateCreditCardCo
         {
             CreditCards creditCards = new CreditCards()
             {
-                CustomerId = request.CustomerId,
+                CustomerId=1,
+                //CustomerId = request.CustomerPhoneNumber,
                 CardNumber = request.CardNumber,
                 ExpiryDate = request.ExpiryDate,
                 CVV = request.CVV

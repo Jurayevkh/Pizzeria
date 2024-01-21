@@ -20,6 +20,7 @@
     <None Remove="UseCases\Payments\Commands\" />
     <None Remove="UseCases\Payments\Handlers\" />
     <None Remove="UseCases\Payments\Queries\" />
+    <None Remove="Refit\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstractions\" />
@@ -32,10 +33,12 @@
     <Folder Include="UseCases\Payments\Commands\" />
     <Folder Include="UseCases\Payments\Handlers\" />
     <Folder Include="UseCases\Payments\Queries\" />
+    <Folder Include="Refit\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
     <PackageReference Include="MediatR" Version="11.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Refit" Version="6.3.2" />
   </ItemGroup>
 </Project>
