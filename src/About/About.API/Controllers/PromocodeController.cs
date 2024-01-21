@@ -1,5 +1,9 @@
 ﻿
+using System.Text.Json;
+using About.API.DTO.Promocodes;
 using About.Application.UseCases.Promocodes.Commands;
+using About.Domain.Entities.Promocodes;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace About.API.Controllers
 {
@@ -7,24 +11,58 @@ namespace About.API.Controllers
     public class PromocodeController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly IDistributedCache _distributedCache;
 
-        public PromocodeController(IMediator mediator)
+        public PromocodeController(IMediator mediator, IDistributedCache distributedCache)
         {
             _mediator = mediator;
+            _distributedCache = distributedCache;
         }
 
         [HttpGet]
         public async ValueTask<IActionResult> GetAllPromocode()
         {
-            var promocodes = await _mediator.Send(new GetAllPromocodeQuery());
-            return Ok(promocodes);
+        
+            var fromCache = await _distributedCache.GetStringAsync("GetAllPromocode");
+
+            if (fromCache is null)
+            {
+                var promocodes = await _mediator.Send(new GetAllPromocodeQuery());
+
+                if (!promocodes.Any())
+                    return Ok();
+
+                fromCache = JsonSerializer.Serialize(promocodes);
+                await _distributedCache.SetStringAsync("GetAllPromocode", fromCache, new DistributedCacheEntryOptions()
+                {
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(180)
+                });
+            }
+            var result = JsonSerializer.Deserialize<List<Promocode>>(fromCache);
+
+            return Ok(result);
         }
 
         [HttpGet]
         public async ValueTask<IActionResult> GetPromocodeByPromocode(string Promocode)
         {
-            var promocode = await _mediator.Send(new GetPromocodeByPromocodeQuery { Promocode = Promocode });
-            return Ok(promocode);
+            var fromCache = await _distributedCache.GetStringAsync($"Promocode{Promocode}");
+
+            if (fromCache is null)
+            {
+                var promocodes = await _mediator.Send(new GetPromocodeByPromocodeQuery { Promocode = Promocode });
+
+                if (promocodes is null)
+                    return Ok();
+
+                fromCache = JsonSerializer.Serialize(promocodes);
+                await _distributedCache.SetStringAsync($"Promocode{Promocode}", fromCache, new DistributedCacheEntryOptions()
+                {
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(180)
+                });
+            }
+            var result = JsonSerializer.Deserialize<Promocode>(fromCache);
+            return Ok(result);
         }
 
         [HttpGet]
@@ -48,6 +86,10 @@ namespace About.API.Controllers
                 Days = createPromocodeDTO.Days
             };
             var result = await _mediator.Send(promocode);
+
+            await _distributedCache.RemoveAsync($"Promocode{createPromocodeDTO.Promocode}");
+            await _distributedCache.RemoveAsync("GetAllPromocode");
+
             return Ok(result);
         }
 
@@ -64,6 +106,10 @@ namespace About.API.Controllers
                Days=updatePromocodeDTO.Days
             };
             var result = await _mediator.Send(promocode);
+
+            await _distributedCache.RemoveAsync($"Promocode{promocode.Promocode}");
+            await _distributedCache.RemoveAsync("GetAllPromocode");
+
             return Ok(result);
         }
 
@@ -71,6 +117,9 @@ namespace About.API.Controllers
         public async ValueTask<IActionResult> DeletePromocode(string Promocode)
         {
             var result = await _mediator.Send(new DeletePromocodeCommand() { Promocode = Promocode });
+            await _distributedCache.RemoveAsync($"Promocode{Promocode}");
+            await _distributedCache.RemoveAsync("GetAllPromocode");
+
             return Ok(result);
         }
     }
