@@ -1,0 +1,73 @@
+﻿{
+  "Routes": [
+    //Branch Routes:
+    {
+      "DownstreamPathTemplate": "/api/Branch/GetAllBranch",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7260
+        }
+      ],
+      "UpstreamPathTemplate": "/GetAllBranch",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "api/Branch/GetBranchByName?Name={BranchName}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7260
+        }
+      ],
+      "UpstreamPathTemplate": "/GetBranchByName/{BranchName}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "api/Branch/CreateBranch",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7260
+        }
+      ],
+      "UpstreamPathTemplate": "/CreateBranch",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "api/Branch/UpdateBranch",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7260
+        }
+      ],
+      "UpstreamPathTemplate": "/UpdateBranch",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "api/Branch/DeleteBranch?Name={Name}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7260
+        }
+      ],
+      "UpstreamPathTemplate": "/DeleteBranch?Name={Name}",
+      "UpstreamHttpMethod": [ "Put" ]
+    }
+
+
+
+  ]
+}
+
