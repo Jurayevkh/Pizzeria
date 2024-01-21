@@ -7,5 +7,6 @@ global using About.API.DTO.Branches;
 global using About.Application.UseCases.Branches.Commands;
 global using About.Application.UseCases.Promocodes.Queries;
 global using About.API.DTO.Promocodes;
+global using Microsoft.Extensions.Caching.Distributed;
 
 
