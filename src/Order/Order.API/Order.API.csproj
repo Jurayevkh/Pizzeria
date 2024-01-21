@@ -16,19 +16,9 @@
 
   <ItemGroup>
     <None Remove="Controllers\" />
-    <None Remove="DTO\" />
-    <None Remove="DTO\BasketItems\" />
-    <None Remove="DTO\Baskets\" />
-    <None Remove="DTO\OrderItems\" />
-    <None Remove="DTO\Orders\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="DTO\" />
-    <Folder Include="DTO\BasketItems\" />
-    <Folder Include="DTO\Baskets\" />
-    <Folder Include="DTO\OrderItems\" />
-    <Folder Include="DTO\Orders\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Order.Application\Order.Application.csproj">
