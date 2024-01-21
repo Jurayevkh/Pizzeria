@@ -19,7 +19,12 @@ public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand,
             product.Name = request.Name ?? product.Name;
             product.Price = request.Price ?? product.Price;
             product.Recipe = request.Recipe ?? product.Recipe;
-            product.ImagePath = request.ImagePath ?? product.ImagePath;
+            if(request.ImagePath is not null){
+                string wwwRootPath = "/Users/mac/Desktop/Pizzeria/src/AccountCatalog/AccountCatalog.API/wwwroot";
+                string imagesFolderPath = Path.Combine(wwwRootPath, product.ImagePath);
+                File.Delete(imagesFolderPath);
+                product.ImagePath = request.ImagePath;
+            }
             product.UpdatedAt = DateTime.UtcNow;
             _applicationdDbContext.Products.Update(product);
             var result = await _applicationdDbContext.SaveChangesAsync(cancellationToken);
