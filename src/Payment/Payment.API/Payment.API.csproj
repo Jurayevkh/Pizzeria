@@ -12,19 +12,20 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Refit" Version="6.3.2" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Controllers\" />
-    <None Remove="DTOs\" />
     <None Remove="DTOs\Payments\" />
     <None Remove="DTOs\CreditCards\" />
+    <None Remove="DTO\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="DTOs\" />
-    <Folder Include="DTOs\Payments\" />
-    <Folder Include="DTOs\CreditCards\" />
+    <Folder Include="DTO\Payments\" />
+    <Folder Include="DTO\CreditCards\" />
+    <Folder Include="DTO\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Payment.Application\Payment.Application.csproj">
