@@ -12,6 +12,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.13" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +26,8 @@
     <Folder Include="DTO\" />
     <Folder Include="DTO\Customers\" />
     <Folder Include="DTO\Products\" />
+    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AccountCatalog.Application\AccountCatalog.Application.csproj">
@@ -33,5 +36,9 @@
     <ProjectReference Include="..\AccountCatalog.Infrastructure\AccountCatalog.Infrastructure.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\" />
+    <Content Remove="wwwroot\images\" />
   </ItemGroup>
 </Project>

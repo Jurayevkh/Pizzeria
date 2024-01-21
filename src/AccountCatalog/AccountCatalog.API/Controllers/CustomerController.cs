@@ -1,6 +1,8 @@
-﻿using AccountCatalog.API.DTO.Customers;
+﻿using System.Xml.Linq;
+using AccountCatalog.API.DTO.Customers;
 using AccountCatalog.Application.UseCases.Customers.Commands;
 using AccountCatalog.Application.UseCases.Customers.Queries;
+using AccountCatalog.Domain.Entities.Customer;
 
 namespace AccountCatalog.API.Controllers
 {
@@ -8,24 +10,57 @@ namespace AccountCatalog.API.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IDistributedCache _distributedCache;
 
-        public CustomerController(IMediator mediator)
+        public CustomerController(IMediator mediator, IDistributedCache distributedCache)
         {
             _mediator = mediator;
+            _distributedCache = distributedCache;
         }
 
         [HttpGet]
         public async ValueTask<IActionResult> GetAllCustomers()
         {
-            var customers = await _mediator.Send(new GetAllCustomersQuery());
-            return Ok(customers);
+            var fromCache = await _distributedCache.GetStringAsync("GetAllCustomers");
+
+            if (fromCache is null)
+            {
+                var customers = await _mediator.Send(new GetAllCustomersQuery());
+
+                if (!customers.Any())
+                    return Ok();
+
+                fromCache = JsonSerializer.Serialize(customers);
+                await _distributedCache.SetStringAsync("GetAllCustomers", fromCache, new DistributedCacheEntryOptions()
+                {
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(180)
+                });
+            }
+            var result = JsonSerializer.Deserialize<List<Customers>>(fromCache);
+
+            return Ok(result);
         }
 
         [HttpGet]
         public async ValueTask<IActionResult> GetCustomerByPhoneNumber(string PhoneNumber)
         {
-            var customer = await _mediator.Send(new GetCustomerByPhoneQuery { PhoneNumber = PhoneNumber });
-            return Ok(customer);
+            var fromCache = await _distributedCache.GetStringAsync($"Customer{PhoneNumber}");
+
+            if (fromCache is null)
+            {
+                var customer = await _mediator.Send(new GetCustomerByPhoneQuery { PhoneNumber = PhoneNumber });
+
+                if (customer is null)
+                    return Ok();
+
+                fromCache = JsonSerializer.Serialize(customer);
+                await _distributedCache.SetStringAsync($"Customer{PhoneNumber}", fromCache, new DistributedCacheEntryOptions()
+                {
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(180)
+                });
+            }
+            var result = JsonSerializer.Deserialize<Customers>(fromCache);
+            return Ok(result);
         }
 
         [HttpPost]
@@ -39,6 +74,8 @@ namespace AccountCatalog.API.Controllers
                 PhoneNumber=createCustomerDTO.PhoneNumber
             };
             var result = await _mediator.Send(customer);
+            await _distributedCache.RemoveAsync($"Customer{customer.PhoneNumber}");
+            await _distributedCache.RemoveAsync($"GetAllCustomers");
             return Ok(result);
         }
 
@@ -55,6 +92,10 @@ namespace AccountCatalog.API.Controllers
                 RoleId = updateCustomerDTO.RoleId
             };
             var result = await _mediator.Send(customer);
+
+            await _distributedCache.RemoveAsync($"Customer{customer.PhoneNumber}");
+            await _distributedCache.RemoveAsync($"GetAllCustomers");
+
             return Ok(result);
         }
 
@@ -62,6 +103,10 @@ namespace AccountCatalog.API.Controllers
         public async ValueTask<IActionResult> DeleteCustomer(string PhoneNumber)
         {
             var result = await _mediator.Send(new DeleteCustomerCommand() { PhoneNumber = PhoneNumber });
+
+            await _distributedCache.RemoveAsync($"Customer{PhoneNumber}");
+            await _distributedCache.RemoveAsync($"GetAllCustomers");
+
             return Ok(result);
         }
     }
