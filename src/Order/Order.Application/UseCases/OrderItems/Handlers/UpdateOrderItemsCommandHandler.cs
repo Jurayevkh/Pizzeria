@@ -1,4 +1,6 @@
-﻿namespace Order.Application.UseCases.OrderItems.Handlers;
+﻿using Order.Application.UseCases.OrderItems.Commands;
+
+namespace Order.Application.UseCases.OrderItems.Handlers;
 
 public class UpdateOrderItemsCommandHandler : IRequestHandler<UpdateOrderItemsCommand, bool>
 {
@@ -16,7 +18,7 @@ public class UpdateOrderItemsCommandHandler : IRequestHandler<UpdateOrderItemsCo
             var orderItems = await _applicationDbContext.OrderItems.FirstOrDefaultAsync(orderItems=>orderItems.OrderId==request.OrderId && orderItems.ProductId==request.ProductId);
             if (orderItems is null)
                 return false;
-            orderItems.Quantity = request.Quantity;
+            orderItems.Quantity += request.Quantity;
             _applicationDbContext.OrderItems.Update(orderItems);
             var result=await _applicationDbContext.SaveChangesAsync(cancellationToken);
             return result > 0;

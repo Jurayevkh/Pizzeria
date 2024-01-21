@@ -1,4 +1,6 @@
 ﻿namespace Order.Application.UseCases.OrderItems.Handlers;
+
+using Order.Application.UseCases.OrderItems.Commands;
 using Order.Domain.Entities.Order;
 
 public class CreateOrderItemCommandHandler:IRequestHandler<CreateOrderItemsCommand,bool>
@@ -14,7 +16,7 @@ public class CreateOrderItemCommandHandler:IRequestHandler<CreateOrderItemsComma
     {
         try
         {
-            var isHaveOrderItem = await _applicationDbContext.OrderItems.FirstOrDefaultAsync(orderitem => orderitem.OrderId == request.OrderId || orderitem.ProductId == request.ProductId);
+            var isHaveOrderItem = await _applicationDbContext.OrderItems.FirstOrDefaultAsync(orderitem => orderitem.OrderId == request.OrderId && orderitem.ProductId == request.ProductId);
             if (isHaveOrderItem != null)
                 return false;
             OrderItems orderItems = new OrderItems()

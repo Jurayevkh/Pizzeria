@@ -1,4 +1,6 @@
 ﻿namespace Order.Application.UseCases.OrderItems.Handlers;
+
+using Order.Application.UseCases.OrderItems.Queries;
 using Order.Domain.Entities.Order;
 
 public class GetAllOrderItemsByOrderQueryHandler : IRequestHandler<GetAllOrderItemByOrderQuery, List<OrderItems>>

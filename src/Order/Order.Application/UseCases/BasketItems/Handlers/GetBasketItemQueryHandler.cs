@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Order.Domain.Entities.Basket;
 
-public class GetBasketItemQueryHandler : IRequestHandler<GetAllBasketItemByBasketQuery, BasketItems>
+public class GetBasketItemQueryHandler : IRequestHandler<GetAllBasketItemByBasketQuery, List<BasketItems>>
 {
     private readonly IApplicationDbContext _applicationDbContext;
 
@@ -14,9 +14,10 @@ public class GetBasketItemQueryHandler : IRequestHandler<GetAllBasketItemByBaske
     }
 
 
-    public async Task<BasketItems> Handle(GetAllBasketItemByBasketQuery request, CancellationToken cancellationToken)
+
+    async Task<List<BasketItems>> IRequestHandler<GetAllBasketItemByBasketQuery, List<BasketItems>>.Handle(GetAllBasketItemByBasketQuery request, CancellationToken cancellationToken)
     {
-        return await _applicationDbContext.BasketItems.FirstOrDefaultAsync(basketItem => basketItem.BasketId==request.BasketId);
+        return await _applicationDbContext.BasketItems.Where(basketItem => basketItem.BasketId == request.BasketId).ToListAsync();
     }
 }
 
